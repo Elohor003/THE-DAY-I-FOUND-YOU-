@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Day I Found You ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --pink:#f3c5d2;
+  --peach:#f5c7a9;
+  --lilac:#d9c8ef;
+  --cream:#fff6ee;
+  --ink:#59465e;
+  --gold:#f5d88e;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow:hidden;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Nunito',sans-serif;
+}
+#world{
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 90%,#f6d9d9 0%,transparent 48%),
+    linear-gradient(180deg,#e7dafa 0%,#f9dce4 55%,#fff0df 100%);
+  transition:background 2s;
+}
+#world.night{
+  background:linear-gradient(180deg,#55486f,#9b769f 58%,#e5b9c8);
+}
+.sky{
+  position:absolute;inset:0;pointer-events:none;
+}
+.star{
+  position:absolute;
+  color:white;
+  animation:twinkle 2.5s infinite alternate;
+  text-shadow:0 0 12px white;
+}
+@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.2)}}
+.cloud{
+  position:absolute;
+  width:130px;height:36px;
+  background:#fff9f7;
+  border-radius:40px;
+  opacity:.55;
+  animation:cloud 28s linear infinite;
+}
+.cloud:before,.cloud:after{
+  content:"";position:absolute;background:inherit;border-radius:50%;
+}
+.cloud:before{width:55px;height:55px;left:20px;top:-25px}
+.cloud:after{width:70px;height:70px;right:15px;top:-35px}
+@keyframes cloud{from{transform:translateX(-200px)}to{transform:translateX(calc(100vw + 200px))}}
+.ground{
+  position:absolute;bottom:-10%;left:-10%;width:120%;height:34%;
+  border-radius:50% 50% 0 0;
+  background:linear-gradient(180deg,#d9b9d5,#c8a9c8);
+}
+.ground:before{
+  content:"";position:absolute;inset:0;
+  border-radius:inherit;
+  background:linear-gradient(180deg,#f4d3d9,#e9becd);
+  transform:translateY(16px);
+}
+h1,h2,p{margin:0}
+.heading{
+  position:relative;z-index:5;text-align:center;
+  padding:18px;
+}
+.eyebrow{
+  text-transform:uppercase;letter-spacing:4px;
+  font-size:10px;font-weight:800;color:#9c7b9f;
+  margin-bottom:12px;
+}
+h1{
+  font-family:'DM Serif Display',serif;
+  font-weight:400;font-size:clamp(37px,8vw,65px);
+  line-height:1.05;color:#765c7c;
+}
+.subtitle{
+  margin-top:13px;font-size:13px;
+  color:#856e87;letter-spacing:.5px;
+}
+.stage{
+  position:relative;z-index:3;
+  width:min(540px,96vw);height:290px;
+  display:flex;align-items:center;justify-content:center;
+}
+.character{
+  position:absolute;width:135px;height:190px;
+  bottom:24px;
+  transition:left 2s ease,transform 1s;
+}
+#boy{left:18%}
+#girl{right:18%}
+.character svg{width:100%;height:100%;overflow:visible}
+.character .body{
+  transform-box:fill-box;transform-origin:center;
+  animation:breathe 2.5s ease-in-out infinite;
+}
+@keyframes breathe{50%{transform:translateY(-4px)}}
+.character .tail{transform-origin:top center;animation:tail 2s ease-in-out infinite}
+@keyframes tail{50%{transform:rotate(15deg)}}
+.character .blink{animation:blink 4s infinite}
+@keyframes blink{0%,45%,49%,100%{transform:scaleY(1)}47%{transform:scaleY(.12)}}
+.heart{
+  position:absolute;top:30%;left:50%;
+  transform:translate(-50%,-50%) scale(.4);
+  font-size:42px;opacity:0;
+  transition:all 1s;
+  filter:drop-shadow(0 0 15px #fff);
+}
+.heart.show{opacity:1;transform:translate(-50%,-50%) scale(1.3);animation:heartBeat 1.2s infinite}
+@keyframes heartBeat{50%{transform:translate(-50%,-50%) scale(1.5)}}
+.flower{
+  position:absolute;bottom:22px;
+  font-size:22px;animation:sway 3s infinite ease-in-out;
+}
+@keyframes sway{50%{transform:rotate(12deg)}}
+.story{
+  position:relative;z-index:5;
+  min-height:105px;width:min(420px,90vw);
+  text-align:center;padding:15px 20px;
+}
+.story h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(23px,5vw,32px);
+  font-weight:400;color:#795d80;
+}
+.story p{font-size:13px;line-height:1.7;margin-top:9px;color:#866e87}
+.actions{
+  position:relative;z-index:6;
+  display:flex;gap:12px;justify-content:center;
+  flex-wrap:wrap;padding:12px;
+}
+button{
+  border:0;border-radius:30px;padding:13px 23px;
+  font-family:inherit;font-weight:800;font-size:12px;
+  cursor:pointer;transition:transform .2s,box-shadow .2s;
+}
+button:hover{transform:translateY(-3px);box-shadow:0 8px 20px #9b719b30}
+.primary{background:#b58bb9;color:white}
+.secondary{background:#fff9f4;color:#866c8d;border:1px solid #e9d5e5}
+#progress{
+  position:absolute;top:20px;left:50%;
+  transform:translateX(-50%);
+  width:min(220px,60vw);height:4px;
+  background:#ffffff80;border-radius:5px;overflow:hidden;
+  z-index:10;
+}
+#bar{height:100%;width:0;background:white;transition:width 1s}
+#message{
+  position:absolute;z-index:20;inset:0;
+  background:#59465ef2;display:none;
+  align-items:center;justify-content:center;
+  padding:25px;text-align:center;color:white;
+}
+#message.visible{display:flex;animation:fade .8s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.letter{
+  max-width:400px;padding:35px 24px;
+  border:1px solid #ffffff40;border-radius:25px;
+  background:linear-gradient(140deg,#b68ebd,#dfb0c0);
+  box-shadow:0 20px 60px #2c183c50;
+}
+.letter h2{
+  font-family:'DM Serif Display',serif;
+  font-size:38px;font-weight:400;
+}
+.letter p{font-size:14px;line-height:1.9;margin:18px 0}
+#collection{
+  position:absolute;top:30px;right:18px;
+  z-index:8;font-size:11px;color:#fff;
+  background:#92749d80;padding:9px 13px;
+  border-radius:20px;cursor:pointer;
+}
+.sparkle{
+  position:absolute;pointer-events:none;
+  animation:rise 2s forwards;
+  z-index:8;
+}
+@keyframes rise{
+  to{transform:translateY(-150px) rotate(100deg);opacity:0}
+}
+@media(max-width:500px){
+  .stage{height:250px}
+  .character{width:112px;height:165px}
+  #boy{left:10%}#girl{right:10%}
+  .story{min-height:110px}
+}
+</style>
+</head>
+<body>
+<main id="world">
+  <div class="sky" id="sky"></div>
+  <div id="progress"><div id="bar"></div></div>
+  <div id="collection">✦ Stars: <span id="count">0</span>/5</div>
+
+  <header class="heading">
+    <div class="eyebrow">a little story made with love</div>
+    <h1>The Day I<br>Found You</h1>
+    <p class="subtitle">Somewhere between a dream and forever ♡</p>
+  </header>
+
+  <section class="stage" id="stage">
+    <div class="character" id="boy">
+      <svg viewBox="0 0 130 190" aria-label="Cute boy character">
+        <g class="tail">
+          <path d="M88 130 Q125 115 110 85" stroke="#795b4f" stroke-width="9" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="body">
+          <ellipse cx="65" cy="172" rx="29" ry="8" fill="#947a9a" opacity=".18"/>
+          <path d="M38 112 Q28 145 36 165 Q65 179 94 165 Q102 140 91 112Z" fill="#fff0df"/>
+          <path d="M43 165 Q38 177 55 177 L62 177 L61 166Z" fill="#8c6b62"/>
+          <path d="M69 166 L68 177 L88 177 Q94 174 88 165Z" fill="#8c6b62"/>
+          <path d="M32 119 Q15 136 30 145 Q39 144 43 128" fill="#fff0df"/>
+          <path d="M92 119 Q108 136 94 145 Q84 144 82 128" fill="#fff0df"/>
+          <ellipse cx="65" cy="73" rx="37" ry="39" fill="#a77d63"/>
+          <path d="M32 55 L27 20 Q46 24 50 43 Q73 15 99 35 L97 65 Q85 48 65 50 Q45 48 32 65Z" fill="#745345"/>
+          <path d="M34 24 L29 45 L44 39Z" fill="#e5aeb4"/>
+          <path d="M96 36 L96 53 L82 42Z" fill="#e5aeb4"/>
+          <ellipse cx="51" cy="77" rx="3.5" ry="5" fill="#483a3a" class="blink"/>
+          <ellipse cx="78" cy="77" rx="3.5" ry="5" fill="#483a3a" class="blink"/>
+          <ellipse cx="65" cy="89" rx="4" ry="3" fill="#d98b94"/>
+          <path d="M60 94 Q65 100 70 94" fill="none" stroke="#80565a" stroke-width="1.7" stroke-linecap="round"/>
+          <ellipse cx="43" cy="91" rx="7" ry="4" fill="#e99ca6" opacity=".6"/>
+          <ellipse cx="87" cy="91" rx="7" ry="4" fill="#e99ca6" opacity=".6"/>
+          <path d="M48 117 Q65 129 82 117" fill="none" stroke="#e6c4ad" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="character" id="girl">
+      <svg viewBox="0 0 130 190" aria-label="Cute girl character">
+        <g class="tail">
+          <path d="M92 130 Q118 112 106 87" stroke="#755044" stroke-width="9" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="body">
+          <ellipse cx="65" cy="172" rx="29" ry="8" fill="#947a9a" opacity=".18"/>
+          <path d="M38 111 Q28 145 36 165 Q65 179 94 165 Q102 140 91 111Z" fill="#efb8c9"/>
+          <path d="M43 165 Q38 177 55 177 L62 177 L61 166Z" fill="#9c756b"/>
+          <path d="M69 166 L68 177 L88 177 Q94 174 88 165Z" fill="#9c756b"/>
+          <path d="M31 118 Q14 136 29 145 Q39 144 43 128" fill="#f5c6d2"/>
+          <path d="M94 118 Q109 136 94 145 Q84 144 81 128" fill="#f5c6d2"/>
+          <path d="M29 77 Q20 20 65 24 Q112 20 102 91 L99 147 Q90 164 84 136 L87 76 Q65 46 42 77 L44 141 Q34 166 27 143Z" fill="#795346"/>
+          <ellipse cx="65" cy="73" rx="35" ry="38" fill="#f2c6a9"/>
+          <path d="M32 65 Q27 25 67 25 Q105 25 99 72 Q83 42 65 49 Q44 43 32 65Z" fill="#795346"/>
+          <path d="M33 32 Q18 24 25 13 Q41 14 45 28Z" fill="#e8a9bb"/>
+          <ellipse cx="51" cy="77" rx="3.5" ry="5" fill="#483a3a" class="blink"/>
+          <ellipse cx="78" cy="77" rx="3.5" ry="5" fill="#483a3a" class="blink"/>
+          <ellipse cx="65" cy="89" rx="4" ry="3" fill="#d98b94"/>
+          <path d="M60 94 Q65 100 70 94" fill="none" stroke="#80565a" stroke-width="1.7" stroke-linecap="round"/>
+          <ellipse cx="43" cy="91" rx="7" ry="4" fill="#e99ca6" opacity=".6"/>
+          <ellipse cx="87" cy="91" rx="7" ry="4" fill="#e99ca6" opacity=".6"/>
+          <path d="M47 117 Q65 127 83 117" fill="none" stroke="#fff0e9" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="heart" id="heart">♡</div>
+  </section>
+
+  <div class="story">
+    <h2 id="storyTitle">A story is waiting...</h2>
+    <p id="storyText">Two little souls. One magical world. A story that has yet to begin.</p>
+  </div>
+
+  <div class="actions" id="actions">
+    <button class="primary" id="start">Begin our little story ♡</button>
+    <button class="secondary" id="skip">Surprise me ✨</button>
+  </div>
+
+  <div id="message">
+    <div class="letter">
+      <div style="font-size:35px;margin-bottom:12px">♡ ✧ ♡</div>
+      <h2>And then...</h2>
+      <p>In a universe full of stars, flowers and endless possibilities, two little hearts found their way to each other.</p>
+      <p>Maybe the sweetest kind of magic is simply finding someone who makes the world feel softer.</p>
+      <div style="font-family:'DM Serif Display',serif;font-size:22px">The End? ♡</div>
+      <p style="font-size:11px">Some stories deserve to be watched twice.</p>
+      <button class="secondary" onclick="replay()">Watch again ↻</button>
+      <button class="primary" onclick="closeLetter()">Explore the garden ✿</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const world=$('world');
+const titles=[
+  ["Once upon a little dream...","Somewhere in a magical world, two little souls were about to meet."],
+  ["A little light appeared ✨","A tiny star fell from the sky. It was looking for somewhere to belong."],
+  ["Follow the starlight...","One little heart led the way. And suddenly, the world started to bloom."],
+  ["A world full of wonder 🌷","Flowers opened, butterflies danced, and the night became a little brighter."],
+  ["And there you were...","Two little souls finally found each other. The stars seemed to know all along."],
+  ["A little forever ♡","Maybe love is the most beautiful adventure of all."]
+];
+let step=0,playing=false,stars=0,timer=null;
+
+function makeSky(){
+  const sky=$('sky');
+  for(let i=0;i<48;i++){
+    let s=document.createElement('span');
+    s.className='star';
+    s.textContent=['✦','·','✧','⋆'][i%4];
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*80+'%';
+    s.style.fontSize=(7+Math.random()*13)+'px';
+    s.style.animationDelay=Math.random()*3+'s';
+    sky.appendChild(s);
+  }
+  for(let i=0;i<4;i++){
+    let c=document.createElement('div');
+    c.className='cloud';
+    c.style.top=(12+i*15)+'%';
+    c.style.animationDelay=(-i*8)+'s';
+    sky.appendChild(c);
+  }
+  for(let i=0;i<12;i++){
+    let f=document.createElement('div');
+    f.className='flower';
+    f.textContent=['🌷','🌸','✿','🌼'][i%4];
+    f.style.left=(i*9+2)+'%';
+    f.style.animationDelay=(i*.3)+'s';
+    $('stage').appendChild(f);
+  }
+}
+makeSky();
+
+function updateStory(n){
+  step=n;
+  $('storyTitle').textContent=titles[n][0];
+  $('storyText').textContent=titles[n][1];
+  $('bar').style.width=((n+1)/6*100)+'%';
+  if(n>=1)$('heart').classList.add('show');
+  if(n>=2)world.classList.add('night');
+  if(n>=3){
+    $('boy').style.left='29%';
+    $('girl').style.right='29%';
+  }
+  if(n>=4){
+    $('boy').style.transform='translateX(28px)';
+    $('girl').style.transform='translateX(-28px)';
+    $('heart').style.fontSize='62px';
+  }
+  if(n===5){
+    $('boy').style.transform='translateX(42px) scale(1.06)';
+    $('girl').style.transform='translateX(-42px) scale(1.06)';
+  }
+}
+function next(){
+  if(step<5){
+    updateStory(step+1);
+  }else{
+    clearInterval(timer);playing=false;
+    $('message').classList.add('visible');
+  }
+}
+function start(){
+  if(playing)return;
+  if(step===5)replay();
+  playing=true;
+  $('actions').innerHTML='<button class="primary" id="next">Next magical moment ✨</button><button class="secondary" id="pause">Pause</button>';
+  $('next').onclick=()=>{next();resetTimer()};
+  $('pause').onclick=()=>{
+    clearInterval(timer);playing=false;
+    $('pause').textContent='Continue';
+    $('pause').onclick=()=>{start()};
+  };
+  timer=setInterval(next,6500);
+}
+function resetTimer(){
+  clearInterval(timer);
+  timer=setInterval(next,6500);
+}
+function replay(){
+  clearInterval(timer);playing=false;step=0;
+  $('message').classList.remove('visible');
+  world.classList.remove('night');
+  $('heart').classList.remove('show');
+  $('boy').style.cssText='left:18%';
+  $('girl').style.cssText='right:18%';
+  $('heart').style.fontSize='';
+  $('bar').style.width='0';
+  $('actions').innerHTML='<button class="primary" id="start">Begin our little story ♡</button><button class="secondary" id="skip">Surprise me ✨</button>';
+  $('start').onclick=start;
+  $('skip').onclick=skip;
+  $('storyTitle').textContent='A story is waiting...';
+  $('storyText').textContent='Two little souls. One magical world. A story that has yet to begin.';
+}
+function skip(){
+  if(!playing){start()}
+  next();
+}
+function closeLetter(){
+  $('message').classList.remove('visible');
+}
+$('start').onclick=start;
+$('skip').onclick=skip;
+
+$('collection').onclick=()=>{
+  if(stars>=5)return;
+  stars++;
+  $('count').textContent=stars;
+  const s=document.createElement('div');
+  s.className='sparkle';
+  s.textContent='✦';
+  s.style.left=(15+Math.random()*70)+'%';
+  s.style.top=(30+Math.random()*50)+'%';
+  s.style.fontSize='30px';
+  s.style.color='#fff4a9';
+  $('world').appendChild(s);
+  setTimeout(()=>s.remove(),2100);
+  if(stars===5){
+    $('storyText').textContent='You found all five stars! You unlocked a little extra magic. ♡';
+    $('storyTitle').textContent='A star collector! ✨';
+  }
+};
+</script>
+</body>
+</html>
+
